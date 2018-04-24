@@ -1,10 +1,33 @@
+'use strict';
+
 function initFullpage() {
-  $('#fullpage').fullpage({
-    parallax: true,
-    parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
-  });
+  var fullpageConfig = {
+    scrollBar: true
+    // sectionSelector: '.fullpage-section',
+  };
+  $('#fullpage').fullpage(fullpageConfig);
+  return;
 };
 
-$(document).ready(function() {
+function initObjectFitPolyfill() {
+  /* https://github.com/bfred-it/object-fit-images */
+  var $imagesToApplyOn = $('.background-image');
+  return objectFitImages($imagesToApplyOn);
+};
+
+function initWow() {
+  return new WOW().init();
+};
+
+$(document).ready(function start() {
   initFullpage();
+  initObjectFitPolyfill();
+  initWow();
 });
+
+var customUtils = {
+  jumpTo: function (section, slide) {
+    console.log('jump', section, slide);
+    $.fn.fullpage.moveTo(section, slide);
+  }
+}

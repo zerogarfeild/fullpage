@@ -1,8 +1,16 @@
+/*
+  This files is compiled by post-css instead of real scss compiler.
+  It only support the features covered by post-css plugins such as variables and nessting.
+*/
 $first-section-delay-time: 3s;
 $caption-font-size: 18px;
 $main-title-font-size: 80px;
 $weight-bold: 700;
 $weight-light: 200;
+
+* {
+  box-sizing: border-box;
+}
 
 @keyframes bg-fade-in {
   from {
@@ -43,7 +51,7 @@ body {
   color: white;
 }
 
-.background {
+.background-image {
   user-select: none;
   position: absolute;
   z-index: -1;
@@ -55,12 +63,19 @@ body {
 }
 
 .section:first-child {
-  .background {
+  .background-image {
     animation: first-background 1.5s ease $first-section-delay-time both;
   }
 }
 
 .section {
+  overflow: hidden;
+}
+
+.section-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -77,6 +92,18 @@ h1.main-title {
 }
 
 .embedded-video {
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  @media screen and (orientation: portrait) {
+    width: 95%;
+  }
+}
+
+.embedded-map {
   width: 50%;
   height: 50%;
   top: 50%;
@@ -147,5 +174,73 @@ h1.main-title {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+.centering-container, .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  flex-direction: column;
+  .button {
+    margin-bottom: 10px;
+  }
+}
+
+.button {
+	background-color: rgba(240, 240, 240, 0.7);
+	border-color: #dbdbdb;
+  border-width: 1px;
+  border-radius: 4px;
+	color: #363636;
+	cursor: pointer;
+	justify-content: center;
+	padding-bottom: .5em;
+	padding-left: .8em;
+	padding-right: .8em;
+	padding-top: .5em;
+	text-align: center;
+  white-space: nowrap;
+  font-size: 1.5rem;
+  &:active {
+    background-color: rgba(210, 210, 210, 0.6);
+    color: black;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.72);
+  }
+}
+
+.text-box {
+  font-size: 1rem;
+  padding: 3em 4.6em;
+  background-color: rgba(255, 255, 255, .44);
+  color: #1d1d1d;
+  .text-box-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: $weight-bold;
+    margin-bottom: .5em;
+    line-height: 1.18;
+  }
+  .text-box-content {
+    text-align: justify;
+    font-size: 1.5em;
+    font-weight: $weight-light;
+    line-height: 1.25;
+    p {
+      margin-bottom: .5em;
+    }
+  }
+  max-width: 500px;
+  width: 70%;
+  margin: 0 auto;
+  @media screen and (orientation: portrait) {
+    width: 95%;
+    max-width: 100%;
   }
 }
