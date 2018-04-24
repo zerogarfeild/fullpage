@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "license": "LGPL-3.0",
   "scripts": {
+    "build-css": "postcss src/main.css --verbose -u postcss-nested -u postcss-advanced-variables -u postcss-object-fit-images -u autoprefixer --output css/main.css",
+    "build-js": "babel src/main.js --out-file js/main.js",
+    "build": "npm run build-css && npm run build-js",
     "dev-css": "postcss src/main.css --verbose -u postcss-nested -u postcss-advanced-variables -u postcss-object-fit-images -u autoprefixer --output css/main.css --watch",
     "dev-js": "babel src/main.js --watch --out-file js/main.js",
     "dev": "concurrently -k \"npm run dev-css\" \"npm run dev-js\""
